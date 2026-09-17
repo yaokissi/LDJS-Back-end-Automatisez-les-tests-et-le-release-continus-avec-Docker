@@ -1,40 +1,26 @@
 #!/usr/bin/env bash
 
-# Arrêter le script immédiatement si une commande échoue (Gestion des exit codes)
+# Arrêter le script immédiatement si une commande échoue
 set -e
 
-echo "=== Script Unifié d'Exécution des Tests ==="
+echo "=== Démarrage du script de tests ==="
 
-# 1. Détection automatique du type de projet
-PROJECT_TYPE="Inconnu"
-if [ -f "package.json" ]; then
-  if grep -q "@nestjs" package.json; then
-    PROJECT_TYPE="Backend NestJS"
-  elif grep -q "react" package.json; then
-    PROJECT_TYPE="Frontend React"
-  fi
-fi
-
-echo "Projet détecté : $PROJECT_TYPE"
-
-# 2. Nettoyage et création du dossier de résultats
+# Nettoyage et création du dossier de résultats
 RESULTS_DIR="test-results"
 rm -rf "$RESULTS_DIR"
 mkdir -p "$RESULTS_DIR"
 
-# 3. Vérification des dépendances
+# Vérification des dépendances
 if [ ! -d "node_modules" ]; then
   echo "Dépendances non trouvées. Installation avec npm ci..."
   npm ci
 fi
 
-# 4. Exécution des tests adaptés avec rapport JUnit XML
-echo "Lancement des tests unitaires pour $PROJECT_TYPE..."
-
+# Exécution des tests avec génération du rapport JUnit XML
+echo "Exécution des tests unitaires Jest..."
 export JEST_JUNIT_OUTPUT_DIR="$RESULTS_DIR"
 export JEST_JUNIT_OUTPUT_NAME="junit.xml"
 
-# Utilisation de npx jest avec le reporter jest-junit installé
-npx jest --ci --reporters=default --reporters=jest-junit
+npx -p jest-junit jest --ci --reporters=default --reporters=jest-junit
 
-echo "Tests $PROJECT_TYPE terminés avec succès ! Rapport généré dans $RESULTS_DIR/junit.xml"
+echo "Tests terminés avec succès ! Rapport généré dans $RESULTS_DIR/junit.xml"
