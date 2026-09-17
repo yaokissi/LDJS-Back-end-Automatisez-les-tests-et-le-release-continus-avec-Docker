@@ -37,4 +37,4 @@ export JEST_JUNIT_OUTPUT_NAME="junit.xml"
 # Utilisation de npx jest avec le reporter jest-junit installé
 npx jest --ci --reporters=default --reporters=jest-junit
 
-echo "✅ Tests $PROJECT_TYPE terminés avec succès ! Rapport généré dans $RESULTS_DIR/junit.xml"
+echo "Tests $PROJECT_TYPE terminés avec succès ! Rapport généré dans $RESULTS_DIR/junit.xml"
