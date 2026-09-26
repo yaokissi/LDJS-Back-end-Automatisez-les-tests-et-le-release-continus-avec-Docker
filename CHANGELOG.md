@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/yaokissi/LDJS-Back-end-Automatisez-les-tests-et-le-release-continus-avec-Docker/compare/v1.0.0...v1.1.0) (2026-09-26)
+
+
+### Features
+
+* build and push Docker images on semantic release ([0a9000d](https://github.com/yaokissi/LDJS-Back-end-Automatisez-les-tests-et-le-release-continus-avec-Docker/commit/0a9000d73dbdaa16f0c5c2575a8f3d4d8fa515b9))
+
 # 1.0.0 (2026-09-18)
 
 
